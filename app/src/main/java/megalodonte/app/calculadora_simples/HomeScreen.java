@@ -19,6 +19,12 @@ public final class HomeScreen implements ScreenComponent {
     private final State<String> second = State.of("");
     private final State<String> result = State.of("Informe dois números.");
 
+    /** Keeps the displayed result current by clearing it whenever an operand changes. */
+    public HomeScreen() {
+        first.subscribe(value -> result.set("Informe dois números."));
+        second.subscribe(value -> result.set("Informe dois números."));
+    }
+
     @Override public Component render() {
         return new Scroll(new Column(new ColumnProps().paddingAll(24).spacingOf(14).fillWidth()).children(
                 new Text("Calculadora", new TextProps().fontSize(28)),
