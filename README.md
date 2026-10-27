@@ -5,10 +5,25 @@ Its screen uses only Megalodonte components; JSONC is rendered by the Android br
 The [Android JSONC guide](https://github.com/eliezer-dev-software-enginner/megalodonte-android/blob/main/docs/JSONC_ANDROID.md)
 lists the supported component types, bindings and platform-specific properties.
 
-Install JDK 25 and Android SDK Platform 35. Clone `megalodonte-android`,
-`megalodonte-core`, `megalodonte-theme`, and `megalodonte-reactivity-portable`
-under this project's `framework/` directory, or set
-`MEGALODONTE_ANDROID_HOME` to the Android framework checkout. Then run:
+Install JDK 25 and Android SDK Platform 35. The Gradle build requires checkouts
+of `megalodonte-android`, `megalodonte-core`, `megalodonte-theme`, and
+`megalodonte-reactivity-portable`. Place them in this layout relative to the
+project root:
+
+```text
+framework/
+  megalodonte-android/
+  libraries/
+    megalodonte-core/
+    megalodonte-theme/
+    megalodonte-reactivity-portable/
+```
+
+Set `MEGALODONTE_ANDROID_HOME` to `framework/megalodonte-android` when using
+this layout. Alternatively, leave the variable unset and place the Android
+checkout at `../../framework/megalodonte-android` relative to this project;
+the three library checkouts must then be in `../../framework/libraries/`.
+The build reads these locations from `settings.gradle.kts`. Then run:
 
 ```sh
 ./gradlew :app:assembleDebug :app:lintDebug
